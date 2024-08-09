@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gardiennage de Chiens - Particuliers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #FF6F61;
+            color: white;
+            text-align: center;
+            padding: 2em 0;
+            background-image: url('https://via.placeholder.com/1200x300');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-family: 'Pacifico', cursive;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            background-color: #FF7043;
+        }
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            position: relative;
+        }
+        nav a::before {
+            content: '\f054';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            margin-right: 5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #FF7043;
+            font-family: 'Pacifico', cursive;
+            margin-bottom: 20px;
+        }
+        .filter-section {
+            background-color: #FFF3E0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #FFE0B2;
+        }
+        .filter-section form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .filter-section form label {
+            font-weight: bold;
+            color: #FF7043;
+        }
+        .filter-section form input, 
+        .filter-section form select {
+            padding: 10px;
+            border: 1px solid #FFAB91;
+            border-radius: 5px;
+            width: calc(50% - 20px);
+        }
+        .filter-section form input[type="submit"] {
+            background-color: #FF6F61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        .filter-section form input[type="submit"]:hover {
+            background-color: #E64A19;
+        }
+        .listing, .job-offer {
+            background-color: #FFF3E0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #FFE0B2;
+        }
+        .listing img, .job-offer img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .listing h3, .job-offer h3 {
+            color: #FF7043;
+            font-family: 'Pacifico', cursive;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #FF7043;
+        }
+        form input, form select, form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #FFAB91;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+        }
+        form input[type="submit"] {
+            background-color: #FF6F61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form input[type="submit"]:hover {
+            background-color: #E64A19;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #FF7043;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            margin-right: 8px;
+            color: #FF6F61;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-dog"></i> Gardiennage de Chiens - Particuliers</h1>
+    <p>Publiez ou trouvez une annonce pour le gardiennage de votre chien</p>
+</header>
+
+<nav>
+    <a href="#annonces"><i class="fas fa-paw icon"></i>Annonces</a>
+    <a href="#poster-annonce"><i class="fas fa-plus icon"></i>Poster une Annonce</a>
+    <a href="#emplois"><i class="fas fa-briefcase icon"></i>Propositions d'Emploi</a>
+</nav>
+
+<div class="container">
+    <section id="filters" class="filter-section">
+        <h2>Filtrer les Annonces</h2>
+        <form action="#" method="get">
+            <div>
+                <label for="location">Lieu :</label>
+                <input type="text" id="location" name="location" placeholder="Ville, Code Postal">
+            </div>
+            <div>
+                <label for="date">Date :</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div>
+                <label for="time">Heure :</label>
+                <input type="time" id="time" name="time">
+            </div>
+            <div>
+                <label for="experience">Expérience Requise :</label>
+                <select id="experience" name="experience">
+                    <option value="none">Pas d'expérience requise</option>
+                    <option value="basic">Expérience de base</option>
+                    <option value="advanced">Expérience avancée</option>
+                </select>
+            </div>
+            <input type="submit" value="Rechercher">
+        </form>
+    </section>
+
+    <section id="annonces">
+        <h2>Annonces Disponibles</h2>
+        <div class="listing">
+            <h3>Offre de Gardiennage de Sophie</h3>
+            <img src="CHIEN 1.jpg" alt="Sophie et son chien">
+            <p>Sophie cherche quelqu'un pour garder son chien à Bordeaux du 15 au 20 août. Expérience requise avec les grands chiens.</p>
+            <p><strong>Lieu :</strong> Bordeaux</p>
+            <p><strong>Dates :</strong> 15-20 août</p>
+            <p><strong>Type de chien :</strong> Labrador</p>
+            <p><strong>Expérience Requise :</strong> Expérience avancée</p>
+            <p><strong>Contact :</strong> sophie@example.com</p>
+        </div>
+        <div class="listing">
+            <h3>Offre de Gardiennage de Jean</h3>
+            <img src="CHIEN 2.jpg" alt="Jean et son chien">
+            <p>Jean propose de garder votre chien à Lyon pendant vos vacances. Disponible tout l'été.</p>
+            <p><strong>Lieu :</strong> Lyon</p>
+            <p><strong>Dates :</strong> Juillet - Août</p>
+            <p><strong>Type de chien :</strong> Tous types</p>
+            <p><strong>Expérience Requise :</strong> Pas d'expérience requise</p>
+            <p><strong>Contact :</strong> jean@example.com</p>
+        </div>
+    </section>
+
+    <section id="poster-annonce">
+        <h2>Poster une Annonce</h2>
+        <form action="#" method="post">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="location">Lieu :</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="dates">Dates :</label>
+            <input type="text" id="dates" name="dates" required>
+
+            <label for="dog-type">Type de Chien :</label>
+            <input type="text" id="dog-type" name="dog-type" required>
+
+            <label for="experience">Expérience Requise :</label>
+            <select id="experience" name="experience" required>
+                <option value="none">Pas d'expérience requise</option>
+                <option value="basic">Expérience de base</option>
+                <option value="advanced">Expérience avancée</option>
+            </select>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <input type="submit" value="Poster l'Annonce">
+        </form>
+    </section>
+
+    <section id="emplois">
+        <h2>Propositions d'Emploi</h2>
+        <div class="job-offer">
+            <h3>Proposition d'Emploi de Claire</h3>
+            <img src="CHIEN 3.jpg" alt="Claire et son chien">
+            <p>Claire recherche un emploi de garde de chiens à Paris. Expérience avec les races de petite taille.</p>
+            <p><strong>Lieu :</strong> Paris</p>
+            <p><strong>Disponibilité :</strong> Immédiate</p>
+            <p><strong>Expérience :</strong> Expérience de base</p>
+            <p><strong>Contact :</strong> claire@example.com</p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Gardiennage de Chiens - Particuliers. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
