@@ -174,6 +174,7 @@
     <a href="#annonces"><i class="fas fa-paw icon"></i>Annonces</a>
     <a href="#poster-annonce"><i class="fas fa-plus icon"></i>Poster une Annonce</a>
     <a href="#emplois"><i class="fas fa-briefcase icon"></i>Propositions d'Emploi</a>
+	<a href="#Annonce d'Emploi"><i class="fas fa-briefcase icon"></i>Annonce d'Emploi</a>
 </nav>
 
 <div class="container">
@@ -291,8 +292,8 @@
 			<a href="profil 2.html" class="button">profil</a>
 			</nav>
 			
-			<section id="Proposition d'emploi">
-        <h2>Proposition d'emploi</h2>
+			<section id="Annonce d'Emploi">
+        <h2>Annonce d'Emploi</h2>
         <form action="#" method="post">
             <label for="name">Nom :</label>
             <input type="text" id="name" name="name" required>
