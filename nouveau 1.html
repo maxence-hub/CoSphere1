@@ -161,6 +161,7 @@
             color: #FF6F61;
         }
     </style>
+    </style>
 </head>
 <body>
 
@@ -173,7 +174,6 @@
     <a href="#annonces"><i class="fas fa-paw icon"></i>Annonces</a>
     <a href="#poster-annonce"><i class="fas fa-plus icon"></i>Poster une Annonce</a>
     <a href="#emplois"><i class="fas fa-briefcase icon"></i>Propositions d'Emploi</a>
-    <a href="profil.html" class="button">profil</a>
 </nav>
 
 <div class="container">
@@ -207,16 +207,18 @@
     <section id="annonces">
         <h2>Annonces Disponibles</h2>
         <div class="listing">
+		<div class="listing" data-lieu="Bordeaux" data-date="15-20/08/24" data-heure="15-20/08/24" data-experience="Expérience avancée">
             <h3>Offre de Gardiennage de Sophie</h3>
             <img src="CIEN 1.jpg" alt="Sophie et son chien">
             <p>Sophie cherche quelqu'un pour garder son chien à Bordeaux du 15 au 20 août. Expérience requise avec les grands chiens.</p>
             <p><strong>Lieu :</strong> Bordeaux</p>
-            <p><strong>Dates :</strong> 15-20 août</p>
+            <p><strong>Dates :</strong> 15-20/08/24</p>
             <p><strong>Type de chien :</strong> Labrador</p>
             <p><strong>Expérience Requise :</strong> Expérience avancée</p>
             <p><strong>Contact :</strong> sophie@example.com</p>
         </div>
         <div class="listing">
+		<div class="listing" data-lieu="Lyon" data-date="Juillet - Août" data-heure="Juillet - Août" data-experience="Pas d'experience Requise">
             <h3>Offre de Gardiennage de Jean</h3>
             <img src="CHIEN 2.jpg" alt="Jean et son chien">
             <p>Jean propose de garder votre chien à Lyon pendant vos vacances. Disponible tout l'été.</p>
@@ -263,6 +265,7 @@
     <section id="emplois">
         <h2>Propositions d'Emploi</h2>
         <div class="job-offer">
+		<div class="job-offer" data-lieu="Paris" data-date="Immédiate" data-heure="Immédiate" data-experience="Expérience de base">
             <h3>Proposition d'Emploi de Claire</h3>
             <img src="CHIEN 3.jpg" alt="Claire et son chien">
             <p>Claire recherche un emploi de garde de chiens à Paris. Expérience avec les races de petite taille.</p>
@@ -270,8 +273,58 @@
             <p><strong>Disponibilité :</strong> Immédiate</p>
             <p><strong>Expérience :</strong> Expérience de base</p>
             <p><strong>Contact :</strong> claire@example.com</p>
-        </div>
+			<nav>
+			<a href="profil.html" class="button">profil</a>
+			</nav>
+			
+			<section id="emplois">
+        <div class="job-offer">
+		<div class="job-offer" data-lieu="Paris" data-date="Immédiate" data-heure="Immédiate" data-experience="Expérience de base">
+            <h3>Proposition d'Emploi de Guillaume</h3>
+            <img src="CHIEN 5.jpg" alt="Guillaume et son chien">
+            <p>Guillaume recherche un emploi de garde de chiens à Paris. Expérience avec les races de petite taille.</p>
+            <p><strong>Lieu :</strong> Paris</p>
+            <p><strong>Disponibilité :</strong> Immédiate</p>
+            <p><strong>Expérience :</strong> Expérience de base</p>
+            <p><strong>Contact :</strong> Guillaume@example.com</p>
+			<nav>
+			<a href="profil 2.html" class="button">profil</a>
+			</nav>
+			
+			<section id="Proposition d'emploi">
+        <h2>Proposition d'emploi</h2>
+        <form action="#" method="post">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="location">Lieu :</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="dates">Dates :</label>
+            <input type="text" id="dates" name="dates" required>
+
+            <label for="dog-type">Type de Chien :</label>
+            <input type="text" id="dog-type" name="dog-type" required>
+
+            <label for="experience">Expérience Requise :</label>
+            <select id="experience" name="experience" required>
+                <option value="none">Pas d'expérience requise</option>
+                <option value="basic">Expérience de base</option>
+                <option value="advanced">Expérience avancée</option>
+            </select>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <input type="submit" value="Poster l'Annonce">
+        </form>
     </section>
+        </div>
+     </section>
 </div>
 </body>
 </html>
+
