@@ -168,6 +168,7 @@
 <header>
     <h1><i class="fas fa-dog"></i> Gardiennage de Chiens - Particuliers</h1>
     <p>Publiez ou trouvez une annonce pour le gardiennage de votre chien</p>
+	
 </header>
 
 <nav>
@@ -276,6 +277,7 @@
             <p><strong>Contact :</strong> claire@example.com</p>
 			<nav>
 			<a href="profil.html" class="button">profil</a>
+			<a href="réservation.html" class="button">réservation</a>
 			</nav>
 			
 			<section id="emplois">
@@ -290,6 +292,7 @@
             <p><strong>Contact :</strong> Guillaume@example.com</p>
 			<nav>
 			<a href="profil 2.html" class="button">profil</a>
+			<a href="réservation.html" class="button">réservation</a>
 			</nav>
 			
 			<section id="Annonce d'Emploi">
