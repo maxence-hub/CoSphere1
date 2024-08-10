@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation Gardiennage Canin</title>
+    <style>
+        /* Styles généraux pour le corps */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Conteneur principal */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Titre principal */
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Texte d'explication */
+        p {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        /* Champ pour le nombre d'heures */
+        input[type="number"] {
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #dfe6e9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Bouton de paiement PayPal */
+        .paypal-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Style du bouton personnalisé */
+        .paypal-button input[type="image"] {
+            width: 250px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Effet de survol */
+        .paypal-button input[type="image"]:hover {
+            transform: scale(1.05);
+        }
+
+        /* Style pour le label */
+        label {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Réservez votre Gardiennage Canin</h1>
+        <p>Seulement 5 euros par heure pour prendre soin de votre compagnon à quatre pattes.</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <!-- Identifiant PayPal -->
+            <input type="hidden" name="business" value="dhaeyermaxence@gmail.com">
+            <!-- Acheter maintenant -->
+            <input type="hidden" name="cmd" value="_xclick">
+            <!-- Détails de l'article -->
+            <input type="hidden" name="item_name" value="Gardiennage Canin">
+            <input type="hidden" name="amount" value="5.00">
+            <input type="hidden" name="currency_code" value="EUR">
+            
+            <!-- Nombre d'heures -->
+            <label for="hours">Nombre d'heures :</label>
+            <input type="number" id="hours" name="quantity" min="1" value="1" required>
+
+            <div class="paypal-button">
+                <input type="image" name="submit" border="0"
+                src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+                alt="PayPal - Le moyen le plus simple et sécurisé de payer en ligne">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
