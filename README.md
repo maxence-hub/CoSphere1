@@ -161,7 +161,6 @@
             color: #FF6F61;
         }
     </style>
-    </style>
 </head>
 <body>
 
@@ -234,37 +233,102 @@
         </div>
     </section>
 
-    <section id="poster-annonce">
-        <h2>Poster une Annonce</h2>
-        <form action="#" method="post">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
+    <body>
 
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
+<div class="form-container">
+    <h3>Créer une annonce</h3>
+    <form id="create-ad-form">
+        <input type="text" placeholder="Nom d'utilisateur" required>
+        <input type="email" id="paypal-email" placeholder="Email PayPal" required>
+        <input type="text" placeholder="Titre de l'annonce" required>
+        <textarea placeholder="Description de l'annonce" required></textarea>
+        <input type="text" placeholder="Lieu" required>
+        <input type="date" placeholder="Date" required>
+        <input type="text" placeholder="Nom du chien" required>
+        <input type="text" placeholder="Expérience requise" required>
+        <input type="file" id="dog-image" accept="image/*" required>
+        <button type="submit">Créer l'annonce</button>
+    </form>
+</div>
 
-            <label for="location">Lieu :</label>
-            <input type="text" id="location" name="location" required>
+<div id="ads-list"></div>
 
-            <label for="dates">Dates :</label>
-            <input type="text" id="dates" name="dates" required>
+<script>
+    const form = document.getElementById('create-ad-form');
+    const adsList = document.getElementById('ads-list');
 
-            <label for="dog-type">Type de Chien :</label>
-            <input type="text" id="dog-type" name="dog-type" required>
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            <label for="experience">Expérience Requise :</label>
-            <select id="experience" name="experience" required>
-                <option value="none">Pas d'expérience requise</option>
-                <option value="basic">Expérience de base</option>
-                <option value="advanced">Expérience avancée</option>
-            </select>
+        const username = this.querySelector('input[placeholder="Nom d\'utilisateur"]').value;
+        const paypalEmail = document.getElementById('paypal-email').value;
+        const title = this.querySelector('input[placeholder="Titre de l\'annonce"]').value;
+        const description = this.querySelector('textarea').value;
+        const location = this.querySelector('input[placeholder="Lieu"]').value;
+        const date = this.querySelector('input[type="date"]').value;
+        const dogName = this.querySelector('input[placeholder="Nom du chien"]').value;
+        const experience = this.querySelector('input[placeholder="Expérience requise"]').value;
+        const dogImage = document.getElementById('dog-image').files[0];
 
-            <label for="description">Description :</label>
-            <textarea id="description" name="description" rows="5" required></textarea>
+        // Créer un élément pour l'annonce
+        const adContainer = document.createElement('div');
+        adContainer.className = 'ad-container';
 
-            <input type="submit" value="Poster l'Annonce">
-        </form>
-    </section>
+        const adImage = document.createElement('img');
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            adImage.src = e.target.result;
+        };
+        reader.readAsDataURL(dogImage);
+
+        const adTitle = document.createElement('h3');
+        adTitle.textContent = title;
+
+        const adDesc = document.createElement('p');
+        adDesc.textContent = description;
+
+        const adLocation = document.createElement('p');
+        adLocation.textContent = `Lieu: ${location}`;
+
+        const adDate = document.createElement('p');
+        adDate.textContent = `Date: ${date}`;
+
+        const adDogName = document.createElement('p');
+        adDogName.textContent = `Chien: ${dogName}`;
+
+        const adExperience = document.createElement('p');
+        adExperience.textContent = `Expérience requise: ${experience}`;
+
+        const reserveButton = document.createElement('button');
+        reserveButton.id = 'reservation-btn';
+        reserveButton.textContent = 'Réserver';
+        reserveButton.onclick = function() {
+            window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&item_name=${title}&currency_code=EUR&amount=5.00`;
+        };
+
+        const contactButton = document.createElement('button');
+        contactButton.id = 'contact-btn';
+        contactButton.textContent = 'Contacter';
+        contactButton.onclick = function() {
+            window.location.href = `message.html?username=${encodeURIComponent(username)}&title=${encodeURIComponent(title)}`;
+        };
+
+        adContainer.appendChild(adImage);
+        adContainer.appendChild(adTitle);
+        adContainer.appendChild(adDesc);
+        adContainer.appendChild(adLocation);
+        adContainer.appendChild(adDate);
+        adContainer.appendChild(adDogName);
+        adContainer.appendChild(adExperience);
+        adContainer.appendChild(reserveButton);
+        adContainer.appendChild(contactButton);
+
+        // Ajouter l'annonce à la page
+        adsList.appendChild(adContainer);
+    });
+</script>
+
+</body>
 
     <section id="emplois">
         <h2>Propositions d'Emploi</h2>
