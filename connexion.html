@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion et Création de Compte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('CHIEN 2.jpg'); /* Image de fond */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .button-container {
+            margin: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .profile {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile h2 {
+            margin-top: 10px;
+        }
+
+        .profile-info {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .profile-info div {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gallery img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        #back-btn {
+            margin-top: 20px;
+            background-color: #28a745;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #back-btn:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div class="button-container">
+        <button id="login-btn">Connexion</button>
+        <button id="signup-btn">Créer un compte</button>
+    </div>
+
+    <!-- Formulaire de Connexion -->
+    <form id="login-form" class="form-container">
+        <h3>Connexion</h3>
+        <input type="text" placeholder="Nom d'utilisateur" required>
+        <input type="password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <!-- Formulaire de Création de Compte -->
+    <form id="signup-form" class="form-container">
+        <h3>Créer un compte</h3>
+        <input type="text" placeholder="Nom d'utilisateur" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Mot de passe" required>
+        <input type="text" placeholder="Nom" required>
+        <input type="text" placeholder="Prénom" required>
+        <input type="text" placeholder="Adresse" required>
+        <input type="text" placeholder="Email PayPal" required>
+        <button type="submit">Créer un compte</button>
+    </form>
+
+    <!-- Profil utilisateur -->
+    <div class="profile">
+        <img id="profile-pic" src="CHIEN 3.jpg" alt="Photo de profil">
+        <h2 id="username-display"></h2>
+        <div class="gallery">
+            <img src="CHIEN 3.jpg" alt="Photo 1">
+            <img src="CHIEN 4.jpg" alt="Photo 2">
+            <img src="CHIEN 5.jpg" alt="Photo 3">
+        </div>
+    </div>
+
+    <!-- Informations utilisateur -->
+    <div class="profile-info">
+        <div id="reviews">Avis laissés: 5</div>
+        <div id="rating">Note: 4.5/5</div>
+        <div id="hours">Nombre d'heures: 120</div>
+        <div id="wallet">Portefeuille: 350€</div>
+    </div>
+
+    <!-- Bouton Retour à l'accueil -->
+    <a id="back-btn" href="nouveau 1.html">Retour à l'accueil</a>
+</div>
+
+<script>
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const profile = document.querySelector('.profile');
+    const profileInfo = document.querySelector('.profile-info');
+    const usernameDisplay = document.getElementById('username-display');
+    const profilePic = document.getElementById('profile-pic');
+    const buttonsContainer = document.querySelector('.button-container');
+
+    const reviews = document.getElementById('reviews');
+    const rating = document.getElementById('rating');
+    const hours = document.getElementById('hours');
+    const wallet = document.getElementById('wallet');
+
+    loginBtn.addEventListener('click', () => {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+    });
+
+    signupBtn.addEventListener('click', () => {
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = this.querySelector('input[type="text"]').value;
+        usernameDisplay.textContent = username;
+
+        // Mise à jour des informations (exemple statique)
+        reviews.textContent = "Avis laissés: 5";
+        rating.textContent = "Note: 4.5/5";
+        hours.textContent = "Nombre d'heures: 120";
+        wallet.textContent = "Portefeuille: 350€";
+
+        // Sauvegarde des données dans le localStorage
+        localStorage.setItem('username', username);
+        localStorage.setItem('profilePic', profilePic.src);
+
+        loginForm.style.display = 'none';
+        profile.style.display = 'block';
+        profileInfo.style.display = 'block';
+        buttonsContainer.style.display = 'none';
+    });
+
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = this.querySelector('input[type="text"]').value;
+        usernameDisplay.textContent = username;
+
+        // Mise à jour des informations (exemple statique)
+        reviews.textContent = "Avis laissés: 2";
+        rating.textContent = "Note: 4.0/5";
+        hours.textContent = "Nombre d'heures: 50";
+        wallet.textContent = "Portefeuille: 150€";
+
+        // Sauvegarde des données dans le localStorage
+        localStorage.setItem('username', username);
+        localStorage.setItem('profilePic', profilePic.src);
+
+        signupForm.style.display = 'none';
+        profile.style.display = 'block';
+        profileInfo.style.display = 'block';
+        buttonsContainer.style.display = 'none';
+    });
+
+    // Changement de photo de profil
+    document.querySelectorAll('.gallery img').forEach(img => {
+        img.addEventListener('click', () => {
+            profilePic.src = img.src;
+        });
+    });
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
