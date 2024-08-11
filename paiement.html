@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une annonce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .form-container, .ad-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .ad-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .ad-container h3 {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .ad-container p {
+            margin: 5px 0;
+        }
+
+        #reservation-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #reservation-btn:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h3>Créer une annonce</h3>
+    <form id="create-ad-form">
+        <input type="text" placeholder="Nom d'utilisateur" required>
+        <input type="email" id="paypal-email" placeholder="Email PayPal" required>
+        <input type="text" placeholder="Titre de l'annonce" required>
+        <textarea placeholder="Description de l'annonce" required></textarea>
+        <input type="text" placeholder="Lieu" required>
+        <input type="date" placeholder="Date" required>
+        <input type="text" placeholder="Nom du chien" required>
+        <input type="text" placeholder="Expérience requise" required>
+        <input type="file" id="dog-image" accept="image/*" required>
+        <button type="submit">Créer l'annonce</button>
+    </form>
+</div>
+
+<div id="ads-list"></div>
+
+<script>
+    const form = document.getElementById('create-ad-form');
+    const adsList = document.getElementById('ads-list');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = this.querySelector('input[placeholder="Nom d\'utilisateur"]').value;
+        const paypalEmail = document.getElementById('paypal-email').value;
+        const title = this.querySelector('input[placeholder="Titre de l\'annonce"]').value;
+        const description = this.querySelector('textarea').value;
+        const location = this.querySelector('input[placeholder="Lieu"]').value;
+        const date = this.querySelector('input[type="date"]').value;
+        const dogName = this.querySelector('input[placeholder="Nom du chien"]').value;
+        const experience = this.querySelector('input[placeholder="Expérience requise"]').value;
+        const dogImage = document.getElementById('dog-image').files[0];
+
+        // Créer un élément pour l'annonce
+        const adContainer = document.createElement('div');
+        adContainer.className = 'ad-container';
+
+        const adImage = document.createElement('img');
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            adImage.src = e.target.result;
+        };
+        reader.readAsDataURL(dogImage);
+
+        const adTitle = document.createElement('h3');
+        adTitle.textContent = title;
+
+        const adDesc = document.createElement('p');
+        adDesc.textContent = description;
+
+        const adLocation = document.createElement('p');
+        adLocation.textContent = `Lieu: ${location}`;
+
+        const adDate = document.createElement('p');
+        adDate.textContent = `Date: ${date}`;
+
+        const adDogName = document.createElement('p');
+        adDogName.textContent = `Chien: ${dogName}`;
+
+        const adExperience = document.createElement('p');
+        adExperience.textContent = `Expérience requise: ${experience}`;
+
+        const reserveButton = document.createElement('button');
+        reserveButton.id = 'reservation-btn';
+        reserveButton.textContent = 'Réserver';
+        reserveButton.onclick = function() {
+            window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&item_name=${title}&currency_code=EUR&amount=5.00`;
+        };
+
+        adContainer.appendChild(adImage);
+        adContainer.appendChild(adTitle);
+        adContainer.appendChild(adDesc);
+        adContainer.appendChild(adLocation);
+        adContainer.appendChild(adDate);
+        adContainer.appendChild(adDogName);
+        adContainer.appendChild(adExperience);
+        adContainer.appendChild(reserveButton);
+
+        // Ajouter l'annonce à la page
+        adsList.appendChild(adContainer);
+    });
+</script>
+
+</body>
+</html>
+
