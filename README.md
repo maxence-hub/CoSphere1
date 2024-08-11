@@ -168,6 +168,8 @@
 <header>
     <h1><i class="fas fa-dog"></i> Gardiennage de Chiens - Particuliers</h1>
     <p>Publiez ou trouvez une annonce pour le gardiennage de votre chien</p>
+	<a href="Connexion.html" class="button">Nouveau compte</a>
+	<a href="Connexion.html" class="button">Connexion</a>
 	
 </header>
 
@@ -319,6 +321,9 @@
                 <option value="basic">Expérience de base</option>
                 <option value="advanced">Expérience avancée</option>
             </select>
+			
+			<label for="email">Email Paypal:</label>
+            <input type="email" id="email" name="email" required>
 
             <label for="description">Description :</label>
             <textarea id="description" name="description" rows="5" required></textarea>
