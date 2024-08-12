@@ -400,3 +400,5 @@
 </div>
 </body>
 </html>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6027320094440283"
+     crossorigin="anonymous"></script>
