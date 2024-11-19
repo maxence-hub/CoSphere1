@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Réunion</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 1rem;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: #4a90e2;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #357ABD;
+        }
+
+        #agenda {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            overflow: auto;
+            max-height: 300px;
+        }
+
+        .meeting {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .meeting p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Créer une Réunion</h1>
+        <h2>Programmation d'une Réunion</h2>
+        <form id="meeting-form">
+            <label for="theme">Thème de la réunion :</label>
+            <input type="text" id="theme" name="theme" placeholder="Exemple : Réunion de projet" required>
+
+            <label for="participants">Nombre de participants :</label>
+            <input type="number" id="participants" name="participants" placeholder="Exemple : 10" required>
+
+            <label for="duration">Durée (en minutes) :</label>
+            <input type="number" id="duration" name="duration" placeholder="Exemple : 60" required>
+
+            <label for="date">Date :</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Heure :</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="submit">Créer la Réunion</button>
+        </form>
+    </div>
+
+    <div class="container" id="agenda">
+        <h2>Agenda des Réunions</h2>
+        <!-- Les réunions programmées seront ajoutées ici dynamiquement -->
+    </div>
+
+    <script>
+        document.getElementById('meeting-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Récupération des données du formulaire
+            const theme = document.getElementById('theme').value;
+            const participants = document.getElementById('participants').value;
+            const duration = document.getElementById('duration').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            // Génération d'un code de session aléatoire
+            const sessionCode = 'MTG-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+
+            // Création d'une nouvelle réunion pour l'agenda
+            const agenda = document.getElementById('agenda');
+            const meeting = document.createElement('div');
+            meeting.classList.add('meeting');
+            meeting.innerHTML = `
+                <p><strong>Thème :</strong> ${theme}</p>
+                <p><strong>Participants :</strong> ${participants}</p>
+                <p><strong>Durée :</strong> ${duration} minutes</p>
+                <p><strong>Date :</strong> ${date}</p>
+                <p><strong>Heure :</strong> ${time}</p>
+                <p><strong>Code de session :</strong> ${sessionCode}</p>
+            `;
+
+            // Ajout de la réunion à l'agenda
+            agenda.appendChild(meeting);
+
+            // Réinitialisation du formulaire
+            e.target.reset();
+
+            alert(`Réunion créée avec succès ! Code de session : ${sessionCode}`);
+        });
+    </script>
+</body>
+</html>

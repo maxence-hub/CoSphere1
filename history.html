@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Appels</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .call-history {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .call-record {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .call-record p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .call-record .session-code {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .call-record .status {
+            color: #90ee90;
+        }
+
+        .call-record .status.failed {
+            color: #ff6347;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Historique des Appels</h1>
+        <h2>Voici votre historique des réunions et appels</h2>
+        
+        <div class="call-history" id="call-history">
+            <!-- Les enregistrements d'appels seront ajoutés ici dynamiquement -->
+        </div>
+    </div>
+
+    <script>
+        // Exemple d'historique des appels (peut être récupéré depuis le backend)
+        const callHistory = [
+            {
+                theme: "Réunion de projet",
+                participants: 8,
+                duration: 45,
+                date: "2024-11-15",
+                time: "14:30",
+                sessionCode: "MTG-A1B2C3",
+                status: "success"
+            },
+            {
+                theme: "Discussion stratégie marketing",
+                participants: 12,
+                duration: 30,
+                date: "2024-11-12",
+                time: "10:00",
+                sessionCode: "MTG-D4E5F6",
+                status: "failed"
+            },
+            {
+                theme: "Bilan trimestriel",
+                participants: 5,
+                duration: 60,
+                date: "2024-11-08",
+                time: "16:00",
+                sessionCode: "MTG-G7H8I9",
+                status: "success"
+            }
+        ];
+
+        // Fonction pour afficher l'historique des appels
+        function displayCallHistory() {
+            const historyContainer = document.getElementById('call-history');
+
+            // Vider le contenu de l'historique avant de le remplir
+            historyContainer.innerHTML = '';
+
+            // Parcourir les données d'historique des appels et les afficher
+            callHistory.forEach(call => {
+                const callRecord = document.createElement('div');
+                callRecord.classList.add('call-record');
+                callRecord.innerHTML = `
+                    <p><strong>Thème :</strong> ${call.theme}</p>
+                    <p><strong>Participants :</strong> ${call.participants}</p>
+                    <p><strong>Durée :</strong> ${call.duration} minutes</p>
+                    <p><strong>Date :</strong> ${call.date}</p>
+                    <p><strong>Heure :</strong> ${call.time}</p>
+                    <p><strong>Code de session :</strong> <span class="session-code">${call.sessionCode}</span></p>
+                    <p><strong>Status :</strong> 
+                        <span class="status ${call.status}">${call.status === 'success' ? 'Réunion réussie' : 'Réunion échouée'}</span>
+                    </p>
+                `;
+
+                // Ajouter l'enregistrement à l'historique
+                historyContainer.appendChild(callRecord);
+            });
+        }
+
+        // Afficher l'historique des appels au chargement de la page
+        window.onload = displayCallHistory;
+    </script>
+</body>
+</html>

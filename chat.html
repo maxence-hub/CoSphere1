@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion en Ligne</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chat-box {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .message .user {
+            font-weight: bold;
+        }
+
+        .message .text {
+            margin-top: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-container input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .input-container button {
+            padding: 10px 15px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-container button:hover {
+            background-color: #357ab7;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discussion en Ligne</h1>
+        <div class="chat-box" id="chat-box">
+            <!-- Les messages du chat seront affichés ici -->
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="message-input" placeholder="Écrivez votre message..." />
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        // Liste des messages (pour simulation)
+        const messages = [
+            { user: "Alice", text: "Salut, comment ça va ?" },
+            { user: "Bob", text: "Ça va bien, et toi ?" },
+            { user: "Alice", text: "Tout va bien aussi, merci !" },
+            { user: "Bob", text: "Quoi de neuf ?" }
+        ];
+
+        // Fonction pour afficher les messages dans le chat
+        function displayMessages() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = ''; // Vider la boîte de chat avant d'ajouter les nouveaux messages
+
+            messages.forEach(message => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.innerHTML = `
+                    <span class="user">${message.user}:</span>
+                    <p class="text">${message.text}</p>
+                `;
+                chatBox.appendChild(messageDiv);
+            });
+
+            // Faire défiler la boîte de chat vers le bas pour voir les nouveaux messages
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Fonction pour envoyer un message
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const newMessage = messageInput.value.trim();
+
+            if (newMessage !== '') {
+                // Ajouter le message à la liste
+                messages.push({ user: "Vous", text: newMessage });
+
+                // Réafficher les messages
+                displayMessages();
+
+                // Réinitialiser l'input
+                messageInput.value = '';
+            }
+        }
+
+        // Charger et afficher les messages dès que la page est prête
+        window.onload = displayMessages;
+    </script>
+</body>
+</html>

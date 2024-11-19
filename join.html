@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejoindre une Réunion</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #dcdcdc;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            max-width: 400px;
+            padding: 12px 20px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 6px;
+            background: #4a90e2;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: #357ABD;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rejoindre une Réunion</h1>
+        <p>Entrez le code de la réunion pour rejoindre une visioconférence.</p>
+        <form id="join-form">
+            <input 
+                type="text" 
+                id="meeting-code" 
+                name="meetingCode" 
+                placeholder="Entrez le code de la réunion" 
+                required>
+            <br>
+            <button type="submit">Rejoindre</button>
+        </form>
+    </div>
+
+    <script>
+        // Script pour rediriger vers une réunion
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupère le code de la réunion
+            const meetingCode = document.getElementById('meeting-code').value.trim();
+
+            // Vérifie que le code n'est pas vide
+            if (meetingCode) {
+                // Redirige vers l'URL correspondante (par exemple, une page dédiée à la réunion)
+                window.location.href = `/meeting/${meetingCode}`;
+            } else {
+                alert('Veuillez entrer un code de réunion valide.');
+            }
+        });
+    </script>
+</body>
+</html>
