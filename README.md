@@ -1,407 +1,226 @@
+</head>
+<body>
+    <div class="container">
+        <h1 id="welcome-message">Bienvenue</h1>
+        <p id="description">
+            Connectez-vous pour accéder à votre espace personnel ou créez un compte si vous êtes nouveau.
+        </p>
+        <button id="login-btn" class="btn btn-primary">Se connecter</button>
+        <button id="signup-btn" class="btn btn-secondary">Créer un compte</button>
+		<a href="page d'accueil.html" class="btn">Se connecter</a>
+    </div>
+
+    <script>
+        // Vérifier si un utilisateur est déjà enregistré
+        const userRegistered = localStorage.getItem('userRegistered');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const description = document.getElementById('description');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+
+        if (userRegistered) {
+            // Si un utilisateur est déjà enregistré
+            welcomeMessage.textContent = 'Bienvenue de retour !';
+            description.textContent = 'Nous sommes heureux de vous revoir. Connectez-vous pour accéder à votre espace.';
+            signupBtn.style.display = 'none'; // Cacher le bouton "Créer un compte"
+        }
+
+        // Ajouter un événement au bouton "Créer un compte"
+        signupBtn.addEventListener('click', () => {
+            // Simuler la création d'un compte
+            const userName = prompt('Entrez votre nom pour créer un compte :');
+            if (userName) {
+                localStorage.setItem('userRegistered', userName);
+                alert(`Bienvenue, ${userName} ! Votre compte a été créé.`);
+                location.reload(); // Recharger la page pour mettre à jour l'interface
+            }
+        });
+
+        // Ajouter un événement au bouton "Se connecter"
+        loginBtn.addEventListener('click', () => {
+            if (userRegistered) {
+                alert(`Connexion réussie ! Bienvenue, ${userRegistered}.`);
+                // Rediriger l'utilisateur vers son espace personnel
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Veuillez créer un compte avant de vous connecter.');
+            }
+        });
+    </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6027320094440283"
-     crossorigin="anonymous"></script>
-	<meta name="google-adsense-account" content="ca-pub-6027320094440283">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gardiennage de Chiens - Particuliers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Accueil - Votre Application</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f9f9f9;
+        /* Styles de base */
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
         }
-        header {
-            background-color: #FF6F61;
-            color: white;
-            text-align: center;
-            padding: 2em 0;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3em;
-            font-family: 'Pacifico', cursive;
-        }
-        header p {
-            font-size: 1.2em;
-        }
-        nav {
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            color: #fff;
             display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            background-color: #FF7043;
+            flex-direction: row;
+            min-height: 100vh;
         }
-        nav a {
-            margin: 0 20px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            position: relative;
-        }
-        nav a::before {
-            content: '\f054';
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            margin-right: 5px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
+
+        /* Barre latérale */
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        h2 {
-            text-align: center;
-            color: #FF7043;
-            font-family: 'Pacifico', cursive;
-            margin-bottom: 20px;
-        }
-        .filter-section {
-            background-color: #FFF3E0;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 1px solid #FFE0B2;
-        }
-        .filter-section form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .filter-section form label {
-            font-weight: bold;
-            color: #FF7043;
-        }
-        .filter-section form input, 
-        .filter-section form select {
-            padding: 10px;
-            border: 1px solid #FFAB91;
-            border-radius: 5px;
-            width: calc(50% - 20px);
-        }
-        .filter-section form input[type="submit"] {
-            background-color: #FF6F61;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-            width: auto;
-        }
-        .filter-section form input[type="submit"]:hover {
-            background-color: #E64A19;
-        }
-        .listing, .job-offer {
-            background-color: #FFF3E0;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 1px solid #FFE0B2;
-        }
-        .listing img, .job-offer img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .listing h3, .job-offer h3 {
-            color: #FF7043;
-            font-family: 'Pacifico', cursive;
-            margin-bottom: 10px;
-        }
-        form {
             display: flex;
             flex-direction: column;
-            margin-top: 20px;
+            justify-content: space-between;
         }
-        form label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #FF7043;
-        }
-        form input, form select, form textarea {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #FFAB91;
-            border-radius: 5px;
-            font-family: 'Roboto', sans-serif;
-        }
-        form input[type="submit"] {
-            background-color: #FF6F61;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        form input[type="submit"]:hover {
-            background-color: #E64A19;
-        }
-        footer {
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             text-align: center;
-            padding: 20px;
-            background-color: #FF7043;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
         }
-        .icon {
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            margin-right: 8px;
-            color: #FF6F61;
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #dcdcdc;
+            font-size: 1rem;
+            padding: 10px;
+            display: block;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background: #9013fe;
+            color: #fff;
+        }
+
+        .sidebar footer {
+            font-size: 0.9rem;
+            color: #dcdcdc;
+            text-align: center;
+        }
+
+        /* Contenu principal */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #dcdcdc;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #4a90e2;
+            color: #fff;
+            transition: all 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #357ABD;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: #9013fe;
+        }
+
+        .btn-secondary:hover {
+            background: #7311C6;
         }
     </style>
 </head>
 <body>
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>Services</h2>
+        <ul>
+            <li><a href="history.html">Historique des appels</a></li>
+            <li><a href="report.html">Rapport d'activités</a></li>
+            <li><a href="chat.html">Discussion en ligne</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="portal.html">Portail entreprise</a></li>
+            <li><a href="feedback.html">Suggestions des utilisateurs</a></li>
+        </ul>
+        <footer>
+            &copy; 2024 Votre Application - Tous droits réservés.
+        </footer>
+    </aside>
 
-<header>
-    <h1><i class="fas fa-dog"></i> Gardiennage de Chiens - Particuliers</h1>
-    <p>Publiez ou trouvez une annonce pour le gardiennage de votre chien</p>
-	<a href="Connexion.html" class="button">Nouveau compte</a>
-	<a href="Connexion.html" class="button">Connexion</a>
-	
-</header>
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <header>
+            <h1>CoSphere</h1>
+            <p>Des réunions simplifiées, où que vous soyez</p>
+        </header>
 
-<nav>
-    <a href="#annonces"><i class="fas fa-paw icon"></i>Annonces</a>
-    <a href="#poster-annonce"><i class="fas fa-plus icon"></i>Poster une Annonce</a>
-    <a href="#emplois"><i class="fas fa-briefcase icon"></i>Propositions d'Emploi</a>
-	<a href="#Annonce d'Emploi"><i class="fas fa-briefcase icon"></i>Annonce d'Emploi</a>
-</nav>
-
-<div class="container">
-    <section id="filters" class="filter-section">
-        <h2>Filtrer les Annonces</h2>
-        <form action="#" method="get">
-            <div>
-                <label for="location">Lieu :</label>
-                <input type="text" id="location" name="location" placeholder="Ville, Code Postal">
-            </div>
-            <div>
-                <label for="date">Date :</label>
-                <input type="date" id="date" name="date">
-            </div>
-            <div>
-                <label for="time">Heure :</label>
-                <input type="time" id="time" name="time">
-            </div>
-            <div>
-                <label for="experience">Expérience Requise :</label>
-                <select id="experience" name="experience">
-                    <option value="none">Pas d'expérience requise</option>
-                    <option value="basic">Expérience de base</option>
-                    <option value="advanced">Expérience avancée</option>
-                </select>
-            </div>
-            <input type="submit" value="Rechercher">
-        </form>
-    </section>
-
-    <section id="annonces">
-        <h2>Annonces Disponibles</h2>
-        <div class="listing">
-		<div class="listing" data-lieu="Bordeaux" data-date="15-20/08/24" data-heure="15-20/08/24" data-experience="Expérience avancée">
-            <h3>Offre de Gardiennage de Sophie</h3>
-            <img src="CIEN 1.jpg" alt="Sophie et son chien">
-            <p>Sophie cherche quelqu'un pour garder son chien à Bordeaux du 15 au 20 août. Expérience requise avec les grands chiens.</p>
-            <p><strong>Lieu :</strong> Bordeaux</p>
-            <p><strong>Dates :</strong> 15-20/08/24</p>
-            <p><strong>Type de chien :</strong> Labrador</p>
-            <p><strong>Expérience Requise :</strong> Expérience avancée</p>
-            <p><strong>Contact :</strong> sophie@example.com</p>
+        <div class="container">
+            <h2>Bienvenue !</h2>
+            <p>Rejoignez une réunion en un clic ou créez la vôtre pour collaborer facilement avec vos collègues et amis.</p>
+            <a href="join.html" class="btn">Rejoindre une réunion</a>
+            <a href="create.html" class="btn btn-secondary">Organiser une réunion</a>
         </div>
-        <div class="listing">
-		<div class="listing" data-lieu="Lyon" data-date="Juillet - Août" data-heure="Juillet - Août" data-experience="Pas d'experience Requise">
-            <h3>Offre de Gardiennage de Jean</h3>
-            <img src="CHIEN 2.jpg" alt="Jean et son chien">
-            <p>Jean propose de garder votre chien à Lyon pendant vos vacances. Disponible tout l'été.</p>
-            <p><strong>Lieu :</strong> Lyon</p>
-            <p><strong>Dates :</strong> Juillet - Août</p>
-            <p><strong>Type de chien :</strong> Tous types</p>
-            <p><strong>Expérience Requise :</strong> Pas d'expérience requise</p>
-            <p><strong>Contact :</strong> jean@example.com</p>
-        </div>
-    </section>
-
-    <body>
-
-<div class="form-container">
-    <h3>Créer une annonce</h3>
-    <form id="create-ad-form">
-        <input type="text" placeholder="Nom d'utilisateur" required>
-        <input type="email" id="paypal-email" placeholder="Email PayPal" required>
-        <input type="text" placeholder="Titre de l'annonce" required>
-        <textarea placeholder="Description de l'annonce" required></textarea>
-        <input type="text" placeholder="Lieu" required>
-        <input type="date" placeholder="Date" required>
-        <input type="text" placeholder="Nom du chien" required>
-        <input type="text" placeholder="Expérience requise" required>
-        <input type="file" id="dog-image" accept="image/*" required>
-        <button type="submit">Créer l'annonce</button>
-    </form>
-</div>
-
-<div id="ads-list"></div>
-
-<script>
-    const form = document.getElementById('create-ad-form');
-    const adsList = document.getElementById('ads-list');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const username = this.querySelector('input[placeholder="Nom d\'utilisateur"]').value;
-        const paypalEmail = document.getElementById('paypal-email').value;
-        const title = this.querySelector('input[placeholder="Titre de l\'annonce"]').value;
-        const description = this.querySelector('textarea').value;
-        const location = this.querySelector('input[placeholder="Lieu"]').value;
-        const date = this.querySelector('input[type="date"]').value;
-        const dogName = this.querySelector('input[placeholder="Nom du chien"]').value;
-        const experience = this.querySelector('input[placeholder="Expérience requise"]').value;
-        const dogImage = document.getElementById('dog-image').files[0];
-
-        // Créer un élément pour l'annonce
-        const adContainer = document.createElement('div');
-        adContainer.className = 'ad-container';
-
-        const adImage = document.createElement('img');
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            adImage.src = e.target.result;
-        };
-        reader.readAsDataURL(dogImage);
-
-        const adTitle = document.createElement('h3');
-        adTitle.textContent = title;
-
-        const adDesc = document.createElement('p');
-        adDesc.textContent = description;
-
-        const adLocation = document.createElement('p');
-        adLocation.textContent = `Lieu: ${location}`;
-
-        const adDate = document.createElement('p');
-        adDate.textContent = `Date: ${date}`;
-
-        const adDogName = document.createElement('p');
-        adDogName.textContent = `Chien: ${dogName}`;
-
-        const adExperience = document.createElement('p');
-        adExperience.textContent = `Expérience requise: ${experience}`;
-
-        const reserveButton = document.createElement('button');
-        reserveButton.id = 'reservation-btn';
-        reserveButton.textContent = 'Réserver';
-        reserveButton.onclick = function() {
-            window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&item_name=${title}&currency_code=EUR&amount=5.00`;
-        };
-
-        const contactButton = document.createElement('button');
-        contactButton.id = 'contact-btn';
-        contactButton.textContent = 'Contacter';
-        contactButton.onclick = function() {
-            window.location.href = `message.html?username=${encodeURIComponent(username)}&title=${encodeURIComponent(title)}`;
-        };
-
-        adContainer.appendChild(adImage);
-        adContainer.appendChild(adTitle);
-        adContainer.appendChild(adDesc);
-        adContainer.appendChild(adLocation);
-        adContainer.appendChild(adDate);
-        adContainer.appendChild(adDogName);
-        adContainer.appendChild(adExperience);
-        adContainer.appendChild(reserveButton);
-        adContainer.appendChild(contactButton);
-
-        // Ajouter l'annonce à la page
-        adsList.appendChild(adContainer);
-    });
-</script>
-
-</body>
-
-    <section id="emplois">
-        <h2>Propositions d'Emploi</h2>
-        <div class="job-offer">
-		<div class="job-offer" data-lieu="Paris" data-date="Immédiate" data-heure="Immédiate" data-experience="Expérience de base">
-            <h3>Proposition d'Emploi de Claire</h3>
-            <img src="CHIEN 3.jpg" alt="Claire et son chien">
-            <p>Claire recherche un emploi de garde de chiens à Paris. Expérience avec les races de petite taille.</p>
-            <p><strong>Lieu :</strong> Paris</p>
-            <p><strong>Disponibilité :</strong> Immédiate</p>
-            <p><strong>Expérience :</strong> Expérience de base</p>
-            <p><strong>Contact :</strong> claire@example.com</p>
-			<nav>
-			<a href="profil.html" class="button">profil</a>
-			<a href="réservation.html" class="button">réservation</a>
-			</nav>
-			
-			<section id="emplois">
-        <div class="job-offer">
-		<div class="job-offer" data-lieu="Paris" data-date="Immédiate" data-heure="Immédiate" data-experience="Expérience de base">
-            <h3>Proposition d'Emploi de Guillaume</h3>
-            <img src="CHIEN 5.jpg" alt="Guillaume et son chien">
-            <p>Guillaume recherche un emploi de garde de chiens à Paris. Expérience avec les races de petite taille.</p>
-            <p><strong>Lieu :</strong> Paris</p>
-            <p><strong>Disponibilité :</strong> Immédiate</p>
-            <p><strong>Expérience :</strong> Expérience de base</p>
-            <p><strong>Contact :</strong> Guillaume@example.com</p>
-			<nav>
-			<a href="profil 2.html" class="button">profil</a>
-			<a href="réservation.html" class="button">réservation</a>
-			</nav>
-			
-			<section id="Annonce d'Emploi">
-        <h2>Annonce d'Emploi</h2>
-        <form action="#" method="post">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="location">Lieu :</label>
-            <input type="text" id="location" name="location" required>
-
-            <label for="dates">Dates :</label>
-            <input type="text" id="dates" name="dates" required>
-
-            <label for="dog-type">Type de Chien :</label>
-            <input type="text" id="dog-type" name="dog-type" required>
-
-            <label for="experience">Expérience Requise :</label>
-            <select id="experience" name="experience" required>
-                <option value="none">Pas d'expérience requise</option>
-                <option value="basic">Expérience de base</option>
-                <option value="advanced">Expérience avancée</option>
-            </select>
-			
-			<label for="email">Email Paypal:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="description">Description :</label>
-            <textarea id="description" name="description" rows="5" required></textarea>
-
-            <input type="submit" value="Poster l'Annonce">
-        </form>
-    </section>
-        </div>
-     </section>
-</div>
+    </div>
 </body>
 </html>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6027320094440283"
-     crossorigin="anonymous"></script>
